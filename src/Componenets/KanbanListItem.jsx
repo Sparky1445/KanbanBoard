@@ -1,17 +1,36 @@
 import { useBoard } from '../Contexts/BoardContext.jsx'
 
-
 function KanbanListItem({ itemName, id }) {
-    const { deleteBoard } = useBoard();
+    const { deleteBoard, selectBoard } = useBoard();
 
-    function handleClick() {
+    function handleDeleteClick() {
         deleteBoard(id);
+    }
+
+
+    function handleBoardSelect() {
+        if (itemName !== 'New Board') {
+            selectBoard(id);
+        }
     }
 
     return (
         <li>
-            {(itemName != 'New Board') ? itemName : <p>New Board</p>}
-            <button onClick={handleClick}>Delete</button>
+
+            {(itemName !== 'New Board') ?
+                <button
+                    key={id}
+                    id={id}
+                    className='BoardButton'
+                    onClick={handleBoardSelect}
+                >
+                    {itemName}
+                </button>
+                :
+                <button>New Board</button>
+            }
+
+            <button onClick={handleDeleteClick}>Delete</button>
         </li>
     );
 }

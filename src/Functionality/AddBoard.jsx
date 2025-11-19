@@ -12,7 +12,7 @@ function AddBoard() {
 
     function handleClick() {
         setClicked(true);
-        if (inputValue !== '') addBoard(inputValue);
+        if (inputValue !== '') { addBoard(inputValue); }
         inputReff.current.value = '';
         setInputValue('');
 
