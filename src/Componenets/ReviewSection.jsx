@@ -5,7 +5,7 @@ import TakeReviewInput from './TakeReviewInput.jsx'
 import Review from './Review.jsx'
 
 
-function InProgressSection() {
+function ReviewSection() {
 
 
     const { boards, activeBoardId } = useBoard();
@@ -46,4 +46,4 @@ function InProgressSection() {
 
 }
 
-export default InProgressSection
+export default ReviewSection

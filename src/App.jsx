@@ -7,24 +7,36 @@ import AddBoard from './Functionality/AddBoard.jsx'
 import { BoardProvider } from './Contexts/BoardContext.jsx'
 import TodoSection from './Componenets/TodoSection.jsx'
 import { DIRTProvider } from './Contexts/DIRTContext.jsx'
+import DoneSection from './Componenets/DoneSection.jsx'
+import './Styles/kanban.css'
 
 function App() {
 
   return (
     <>
-      <h1>Kanban Board</h1>
 
-      <BoardProvider>
-        <KanbanList />
-        <AddBoard />
-        <DIRTProvider>
-          <TodoSection />
-          <InProgressSection />
-          <ReviewSection />
+      <div className="Wrapper">
+        <BoardProvider>
 
-        </DIRTProvider>
 
-      </BoardProvider>
+          <div className="kanban-frame">
+            <h1>Kanban Board</h1>
+            <KanbanList />
+            <AddBoard />
+          </div>
+          <DIRTProvider>
+            <div className="BoardDetails">
+              <TodoSection />
+              <InProgressSection />
+              <ReviewSection />
+              <DoneSection />
+            </div>
+
+
+          </DIRTProvider>
+
+        </BoardProvider >
+      </div>
 
     </>
   )
