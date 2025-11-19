@@ -14,7 +14,7 @@ export function DIRTProvider({ children }) {
     function addTodo(id, todoData) {
         setBoards(prev =>
             prev.map(board => board.id === id ? {
-                ...board, todos: [...board.todos, { id: Date.now(), ...todoData }]
+                ...board, todos: [...board.todos, { id: board.todos.length + 1, ...todoData }]
             } : board)
         );
     }
@@ -22,7 +22,7 @@ export function DIRTProvider({ children }) {
     function addInProgress(id, ProgressData) {
         setBoards(prev =>
             prev.map(board => board.id === id ? {
-                ...board, inProgress: [...board.inProgress, { id: Date.now(), ...ProgressData }]
+                ...board, inProgress: [...board.inProgress, { id: board.inProgress.length + 1, ...ProgressData }]
             } : board)
         );
     }
@@ -36,10 +36,19 @@ export function DIRTProvider({ children }) {
     }
 
 
+    function addDone(id, DoneData) {
+        setBoards(prev =>
+            prev.map(board => board.id === id ? {
+                ...board, done: [...board.done, { id: board.done.length + 1, ...DoneData }]
+            } : board)
+        );
+    }
+
+
 
 
     return (
-        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress }}>
+        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress, addDone }}>
             {children}
         </DIRTContext.Provider>
     )
