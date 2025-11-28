@@ -21,7 +21,7 @@ function AddBoard() {
 
     return (
         <div>
-            <button onClick={handleClick}>Add Board</button>
+            <button className="AddBoard" onClick={handleClick}>Add Board</button>
 
             {
                 clicked && (

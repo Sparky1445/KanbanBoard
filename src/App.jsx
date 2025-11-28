@@ -9,6 +9,7 @@ import TodoSection from './Componenets/TodoSection.jsx'
 import { DIRTProvider } from './Contexts/DIRTContext.jsx'
 import DoneSection from './Componenets/DoneSection.jsx'
 import './Styles/kanban.css'
+import { IsAddComponentClickedProvider } from './Contexts/isAddComponentClickedContext.jsx'
 
 function App() {
 
@@ -20,16 +21,22 @@ function App() {
 
 
           <div className="kanban-frame">
-            <h1>Kanban Board</h1>
-            <KanbanList />
-            <AddBoard />
+            <div className="kanban-Header-List">
+              <h1>Kanban Board</h1>
+              <KanbanList />
+            </div>
+            <div className="kanban-board-add">
+              <AddBoard />
+            </div>
           </div>
           <DIRTProvider>
             <div className="BoardDetails">
-              <TodoSection />
-              <InProgressSection />
-              <ReviewSection />
-              <DoneSection />
+              <IsAddComponentClickedProvider>
+                <TodoSection />
+                <InProgressSection />
+                <ReviewSection />
+                <DoneSection />
+              </IsAddComponentClickedProvider>
             </div>
 
 

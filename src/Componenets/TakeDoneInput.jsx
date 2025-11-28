@@ -7,7 +7,7 @@ function TakeDoneInput({ id, setFlag }) {
     const [DoneBy, setDoneBy] = useState('');
     const [TimeOfCompletion, setTimeOfCompletion] = useState('');
 
-    const { addDone } = useDIRT();   // assuming same as addInProgress
+    const { addDone } = useDIRT();
 
     const DoneData = {
         title: DoneTitle,
@@ -17,8 +17,15 @@ function TakeDoneInput({ id, setFlag }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addDone(id, DoneData);
-        setFlag(false);
+        if (DoneTitle && DoneBy && TimeOfCompletion) {
+            addDone(id, DoneData);
+            setFlag(false);
+        } else {
+            alert('Please fill all the fields');
+            setFlag(true);
+        }
+
+
     }
 
     return (

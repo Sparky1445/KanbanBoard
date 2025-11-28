@@ -1,16 +1,16 @@
 
 import { useBoard } from '../Contexts/BoardContext.jsx'
-import { useState } from 'react'
 import TakeReviewInput from './TakeReviewInput.jsx'
 import Review from './Review.jsx'
+import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
 
 
 function ReviewSection() {
 
-
+    const { isAddReviewClicked, setIsAddReviewClicked } = useIsAddComponentClicked();
     const { boards, activeBoardId } = useBoard();
 
-    const [isAddReviewClicked, setIsAddReviewClicked] = useState(false);
+
 
     function takeReviewInput() {
         setIsAddReviewClicked(true);
@@ -19,28 +19,36 @@ function ReviewSection() {
 
 
     return (
-        <div className="ReviewSection">
-            <h1>Review</h1>
-            <button onClick={takeReviewInput}> Add New Review </button>
+        <>
+            <div className="ReviewSection">
+                <h1>Review</h1>
+                <button onClick={takeReviewInput}> Add New Review </button>
 
-            {boards.map((board) => {
-                if (board.id === activeBoardId) {
+                {boards.map((board) => {
+                    if (board.id === activeBoardId) {
 
-                    return (
-                        <>
-                            {board.review.map((ReviewData) => (
-                                <div>
-                                    <Review key={ReviewData.id} ReviewData={ReviewData} />
-                                </div>
-                            ))}
-                        </>
-                    );
-                }
-            })}
+                        return (
+                            <>
+                                {board.review.map((ReviewData) => (
+                                    <div>
+                                        <Review key={ReviewData.id} ReviewData={ReviewData} />
+                                    </div>
+                                ))}
+                            </>
+                        );
+                    }
+                })}
+            </div>
 
-            {isAddReviewClicked && <TakeReviewInput id={activeBoardId} setFlag={setIsAddReviewClicked} />}
+            {
+                (isAddReviewClicked && <span className="addForm">
 
-        </div>
+                    <TakeReviewInput id={activeBoardId} setFlag={setIsAddReviewClicked} />
+                </span>
+                )
+            }
+        </>
+
     )
 
 

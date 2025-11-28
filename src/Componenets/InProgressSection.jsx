@@ -1,14 +1,14 @@
 import InProgress from './InProgress.jsx'
 import { useBoard } from '../Contexts/BoardContext.jsx'
 import TakeInProgressInput from './TakeInProgressInput.jsx'
-import { useState } from 'react'
+import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
 
 function InProgressSection() {
 
+    const { isAddProgressClicked, setIsAddProgressClicked } = useIsAddComponentClicked();
 
     const { boards, activeBoardId } = useBoard();
 
-    const [isAddProgressClicked, setIsAddProgressClicked] = useState(false);
 
     function takeProgressInput() {
         setIsAddProgressClicked(true);
@@ -17,28 +17,35 @@ function InProgressSection() {
 
 
     return (
-        <div className="inProgressSection">
-            <h1>In Progress</h1>
-            <button onClick={takeProgressInput}> Add New Progress </button>
+        <>
+            <div className="inProgressSection">
+                <h1>In Progress</h1>
+                <button onClick={takeProgressInput}> Add New Progress </button>
 
-            {boards.map((board) => {
-                if (board.id === activeBoardId) {
+                {boards.map((board) => {
+                    if (board.id === activeBoardId) {
 
-                    return (
-                        <>
-                            {board.inProgress.map((ProgressData) => (
-                                <div>
-                                    <InProgress key={ProgressData.id} ProgressData={ProgressData} />
-                                </div>
-                            ))}
-                        </>
-                    );
-                }
-            })}
+                        return (
+                            <>
+                                {board.inProgress.map((ProgressData) => (
+                                    <div>
+                                        <InProgress key={ProgressData.id} ProgressData={ProgressData} />
+                                    </div>
+                                ))}
+                            </>
+                        );
+                    }
+                })}
+            </div>
 
-            {isAddProgressClicked && <TakeInProgressInput id={activeBoardId} setFlag={setIsAddProgressClicked} />}
+            {
+                (isAddProgressClicked && <span className="addForm">
 
-        </div>
+                    <TakeInProgressInput id={activeBoardId} setFlag={setIsAddProgressClicked} />
+                </span>
+                )
+            }
+        </>
     )
 
 

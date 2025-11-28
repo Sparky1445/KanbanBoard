@@ -1,40 +1,47 @@
 import Done from './Done.jsx';
 import { useBoard } from '../Contexts/BoardContext.jsx';
 import TakeDoneInput from './TakeDoneInput.jsx';
-import { useState } from 'react';
+import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx';
 
 function DoneSection() {
 
     const { boards, activeBoardId } = useBoard();
-    const [isAddDoneClicked, setIsAddDoneClicked] = useState(false);
+    const { isAddDoneClicked, setIsAddDoneClicked } = useIsAddComponentClicked();
 
     function takeDoneInput() {
         setIsAddDoneClicked(true);
     }
 
     return (
-        <div className="doneSection">
-            <h1>Done</h1>
-            <button onClick={takeDoneInput}> Add Done Task </button>
+        <>
+            <div className="doneSection">
+                <h1>Done</h1>
+                <button onClick={takeDoneInput}> Add Done Task </button>
 
-            {boards.map((board) => {
-                if (board.id === activeBoardId) {
-                    return (
-                        <>
-                            {board.done.map((doneTask) => (
-                                <div key={doneTask.id}>
-                                    <Done DoneData={doneTask} />
-                                </div>
-                            ))}
-                        </>
-                    );
-                }
-            })}
+                {boards.map((board) => {
+                    if (board.id === activeBoardId) {
+                        return (
+                            <>
+                                {board.done.map((doneTask) => (
+                                    <div key={doneTask.id}>
+                                        <Done DoneData={doneTask} />
+                                    </div>
+                                ))}
+                            </>
+                        );
+                    }
+                })}
 
-            {isAddDoneClicked && (
-                <TakeDoneInput id={activeBoardId} setFlag={setIsAddDoneClicked} />
-            )}
-        </div>
+            </div>
+
+            {
+                (isAddDoneClicked && <span className="addForm">
+
+                    <TakeDoneInput id={activeBoardId} setFlag={setIsAddDoneClicked} />
+                </span>
+                )
+            }
+        </>
     );
 }
 

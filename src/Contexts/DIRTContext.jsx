@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
 import { useBoard } from './BoardContext.jsx'
+import { useState } from 'react';
 
 
 const DIRTContext = createContext();
@@ -8,7 +9,10 @@ const DIRTContext = createContext();
 
 
 
+
+
 export function DIRTProvider({ children }) {
+    const [MoveTo, setMoveTo] = useState(false);
     const { setBoards } = useBoard();
 
     function addTodo(id, todoData) {
@@ -48,7 +52,7 @@ export function DIRTProvider({ children }) {
 
 
     return (
-        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress, addDone }}>
+        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress, addDone, MoveTo, setMoveTo }}>
             {children}
         </DIRTContext.Provider>
     )

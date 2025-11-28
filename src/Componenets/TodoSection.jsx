@@ -1,14 +1,14 @@
 import Todo from './Todo.jsx'
 import { useBoard } from '../Contexts/BoardContext.jsx'
-import { useState } from 'react'
-import TakeTodoInput from './TakeTodoInput.jsx'
 
+import TakeTodoInput from './TakeTodoInput.jsx'
+import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
 function TodoSection() {
 
     const { boards, activeBoardId } = useBoard();
 
 
-    const [isAddTodoClicked, setIsAddTodoClicked] = useState(false);
+    const { isAddTodoClicked, setIsAddTodoClicked } = useIsAddComponentClicked();
 
     function takeTodoInput() {
         setIsAddTodoClicked(true);
@@ -36,8 +36,13 @@ function TodoSection() {
                 }
             })}
 
-            {isAddTodoClicked && <TakeTodoInput id={activeBoardId} setFlag={setIsAddTodoClicked} />}
+            {
+                (isAddTodoClicked && <span className="addForm">
 
+                    <TakeTodoInput id={activeBoardId} setFlag={setIsAddTodoClicked} />
+                </span>
+                )
+            }
 
 
         </div>

@@ -3,6 +3,8 @@ import { createContext, useContext, useState } from 'react'
 const BoardContext = createContext();
 
 
+
+
 export function BoardProvider({ children }) {
     const [boards, setBoards] = useState([{
         id: 1, name: 'Board1',

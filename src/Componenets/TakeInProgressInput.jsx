@@ -21,8 +21,13 @@ function TakeInProgressInput({ id, setFlag }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addInProgress(id, ProgressData);
-        setFlag(false);
+        if (ProgressTitle && ProgressDescription && ProgressDueDate && ProgressDueTime && ProgressPercentage) {
+            addInProgress(id, ProgressData);
+            setFlag(false);
+        } else {
+            alert('Please fill all the fields');
+            setFlag(true);
+        }
     }
 
     return (

@@ -1,0 +1,345 @@
+/* ---------------------------
+   GLOBAL LAYOUT
+---------------------------- */
+body {
+  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.Wrapper {
+  padding: 20px;
+}
+
+/* Title + top board list frame */
+.kanban-frame {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.AddBoard{
+    width:100%;
+    border-radius: 10px;
+    padding: 8px 10px;
+    border: none;
+    background-color:#28a745;
+    color:white;
+
+}
+
+.AddBoard:hover{
+    background-color:#2175bb;
+    transition: 0.2s;
+    cursor: pointer;
+    
+
+  }
+
+
+.kanban-frame h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------
+   BOARD LIST (Sidebar)
+---------------------------- */
+.kanban-frame ul {
+  list-style: none;
+  padding: 0;
+}
+
+.kanban-frame li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.BoardButton {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.BoardButton:hover {
+  background: #2175bb;
+}
+
+.kanban-frame button {
+  margin: 3px;
+  cursor: pointer;
+}
+
+/* ---------------------------
+   MAIN BOARD 4-COLUMN LAYOUT
+---------------------------- */
+.BoardDetails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  padding: 20px;
+}
+
+.BoardDetails > div {
+  background: #FFFFE4;
+  border-radius: 10px;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  min-width: screen;
+  min-height: screen;
+  overflow-y: auto;
+}
+
+/* SECTION HEADERS */
+.TodoSection h1,
+.inProgressSection h1,
+.ReviewSection h1,
+.doneSection h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+/* Section add button */
+.TodoSection button,
+.inProgressSection button,
+.ReviewSection button,
+.doneSection button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.TodoSection button:hover,
+.inProgressSection button:hover,
+.ReviewSection button:hover,
+.doneSection button:hover {
+  background: #000;
+}
+
+/* ---------------------------
+   STICKY NOTE CARDS
+---------------------------- */
+.Todo,
+.InProgress,
+.Review,
+.Done {
+ 
+  /* sticky note yellow */
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #e6d77a;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+  transition: 0.15s ease;
+}
+
+.Todo:hover,
+.InProgress:hover,
+.Review:hover,
+.Done:hover {
+  transform: translateY(-3px);
+  background: #fffcc2;
+}
+
+.Todo h2,
+.InProgress h2,
+.Review h2,
+.Done h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Priority / Percentage buttons inside sticky notes */
+.Todo button,
+.InProgress button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+}
+
+/* ---------------------------
+   INPUT FORMS (TakeXXXInput)
+---------------------------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input,
+form select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  font-size: 0.9rem;
+}
+
+/* Cancel / Submit buttons */
+form button {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button[type="submit"] {
+  background: #28a745;
+  color: white;
+}
+
+form button[type="submit"]:hover {
+  background: #1e7e34;
+}
+
+form button[type="button"] {
+  background: #ff4d4d;
+  color: white;
+}
+
+form button[type="button"]:hover {
+  background: #cc0000;
+}
+
+/* ---------------------------
+   SECTION COLORS (Optional)
+---------------------------- */
+.TodoSection {
+  border-top: 5px solid #ff7675;
+}
+
+.inProgressSection {
+  border-top: 5px solid #f1c40f;
+}
+
+.ReviewSection {
+  border-top: 5px solid #74b9ff;
+}
+
+.doneSection {
+  border-top: 5px solid #55efc4;
+}
+
+/* ---------------------------
+   RESPONSIVE
+---------------------------- */
+@media (max-width: 900px) {
+  .BoardDetails {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .BoardDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.addForm {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+
+}
+
+.ComponentSwitcher {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+/* Lightbox Overlay */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  /* dark overlay */
+  backdrop-filter: blur(5px);
+  /* optional nice blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* make sure it's above everything */
+}
+
+/* Modal content */
+.lightbox-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.2s ease-out;
+  /* modal animation */
+}
+
+/* Close Button */
+.close-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Smooth popup animation */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

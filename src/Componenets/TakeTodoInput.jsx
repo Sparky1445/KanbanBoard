@@ -21,8 +21,13 @@ function TakeTodoInput({ id, setFlag }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addTodo(id, todoData);
-        setFlag(false);
+        if (todoTitle && todoDescription && todoDueDate && todoDueTime && todoPriority) {
+            addTodo(id, todoData);
+            setFlag(false);
+        } else {
+            alert('Please fill all the fields');
+            setFlag(true);
+        }
     }
 
     return (

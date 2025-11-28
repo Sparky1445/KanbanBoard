@@ -23,8 +23,14 @@ function TakeReviewInput({ id, setFlag }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addReview(id, ReviewData);
-        setFlag(false);
+
+        if (Title && ToBeReviewed && DueDate && DueTime && ReviewedTillNow && ReviewedBy) {
+            addReview(id, ReviewData);
+            setFlag(false);
+        } else {
+            alert('Please fill all the fields');
+            setFlag(true);
+        }
     }
 
     return (
