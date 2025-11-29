@@ -1,7 +1,7 @@
 import Done from './Done.jsx';
-import { useBoard } from '../Contexts/BoardContext.jsx';
+import { useBoard } from '../../Contexts/BoardContext.jsx';
 import TakeDoneInput from './TakeDoneInput.jsx';
-import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx';
+import { useIsAddComponentClicked } from '../../Contexts/isAddComponentClickedContext.jsx';
 
 function DoneSection() {
 
@@ -24,7 +24,7 @@ function DoneSection() {
                             <>
                                 {board.done.map((doneTask) => (
                                     <div key={doneTask.id}>
-                                        <Done DoneData={doneTask} />
+                                        <Done key={doneTask.id} id={doneTask.id} DoneData={doneTask} />
                                     </div>
                                 ))}
                             </>

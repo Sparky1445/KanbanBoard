@@ -1,13 +1,14 @@
 
 import './App.css'
-import KanbanList from './Componenets/KanbanList'
-import InProgressSection from './Componenets/InProgressSection.jsx'
-import ReviewSection from './Componenets/ReviewSection.jsx'
+import KanbanList from './Componenets/KanbanComponents/KanbanList.jsx'
+import InProgressSection from './Componenets/InProgress/InProgressSection.jsx'
+import ReviewSection from './Componenets/Review/ReviewSection.jsx'
+import TodoSection from './Componenets/Todo/TodoSection.jsx'
+import DoneSection from './Componenets/Done/DoneSection.jsx'
 import AddBoard from './Functionality/AddBoard.jsx'
 import { BoardProvider } from './Contexts/BoardContext.jsx'
-import TodoSection from './Componenets/TodoSection.jsx'
 import { DIRTProvider } from './Contexts/DIRTContext.jsx'
-import DoneSection from './Componenets/DoneSection.jsx'
+
 import './Styles/kanban.css'
 import { IsAddComponentClickedProvider } from './Contexts/isAddComponentClickedContext.jsx'
 

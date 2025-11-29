@@ -1,7 +1,7 @@
 import InProgress from './InProgress.jsx'
-import { useBoard } from '../Contexts/BoardContext.jsx'
+import { useBoard } from '../../Contexts/BoardContext.jsx'
 import TakeInProgressInput from './TakeInProgressInput.jsx'
-import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
+import { useIsAddComponentClicked } from '../../Contexts/isAddComponentClickedContext.jsx'
 
 function InProgressSection() {
 
@@ -29,7 +29,7 @@ function InProgressSection() {
                             <>
                                 {board.inProgress.map((ProgressData) => (
                                     <div>
-                                        <InProgress key={ProgressData.id} ProgressData={ProgressData} />
+                                        <InProgress id={ProgressData.id} key={ProgressData.id} ProgressData={ProgressData} />
                                     </div>
                                 ))}
                             </>

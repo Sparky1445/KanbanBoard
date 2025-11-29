@@ -1,8 +1,8 @@
 import Todo from './Todo.jsx'
-import { useBoard } from '../Contexts/BoardContext.jsx'
+import { useBoard } from '../../Contexts/BoardContext.jsx'
 
 import TakeTodoInput from './TakeTodoInput.jsx'
-import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
+import { useIsAddComponentClicked } from '../../Contexts/isAddComponentClickedContext.jsx'
 function TodoSection() {
 
     const { boards, activeBoardId } = useBoard();
@@ -28,7 +28,7 @@ function TodoSection() {
                         <>
                             {board.todos.map((todo) => (
                                 <div>
-                                    <Todo key={todo.id} todoData={todo} />
+                                    <Todo id={todo.id} key={todo.id} todoData={todo} />
                                 </div>
                             ))}
                         </>

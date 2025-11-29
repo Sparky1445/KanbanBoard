@@ -1,4 +1,4 @@
-import { useBoard } from '../Contexts/BoardContext.jsx'
+import { useBoard } from '../../Contexts/BoardContext.jsx'
 
 function KanbanListItem({ itemName, id }) {
     const { deleteBoard, selectBoard } = useBoard();

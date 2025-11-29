@@ -12,8 +12,10 @@ const DIRTContext = createContext();
 
 
 export function DIRTProvider({ children }) {
-    const [MoveTo, setMoveTo] = useState(false);
+
     const { setBoards } = useBoard();
+
+    const [ElementMovedFlag, setElementMovedFlag] = useState(false);
 
     function addTodo(id, todoData) {
         setBoards(prev =>
@@ -48,11 +50,22 @@ export function DIRTProvider({ children }) {
         );
     }
 
-
+    function deleteElement(id, elementId, type) {
+        setBoards(prevBoards =>
+            prevBoards.map(board =>
+                board.id === id
+                    ? {
+                        ...board,
+                        [type]: board[type].filter(element => element.id !== elementId)
+                    }
+                    : board
+            )
+        );
+    }
 
 
     return (
-        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress, addDone, MoveTo, setMoveTo }}>
+        <DIRTContext.Provider value={{ addReview, addTodo, addInProgress, addDone, deleteElement, ElementMovedFlag, setElementMovedFlag }}>
             {children}
         </DIRTContext.Provider>
     )

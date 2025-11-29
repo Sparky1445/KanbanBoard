@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext';
+import { useIsAddComponentClicked } from '../../Contexts/isAddComponentClickedContext.jsx';
+import { useDIRT } from '../../Contexts/DIRTContext.jsx';
+import { useBoard } from '../../Contexts/BoardContext.jsx';
 
-function ComponentSwitcher({ close }) {
+function ComponentSwitcher({ close, id, CurrentType }) {
     const [buttonClickedType, setButtonClickedType] = useState("");
+    const { deleteElement } = useDIRT();
+    const { activeBoardId } = useBoard();
+
 
     const {
         setIsAddTodoClicked,
@@ -14,16 +19,26 @@ function ComponentSwitcher({ close }) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (buttonClickedType === "Todo") {
-            setIsAddTodoClicked(true);
-        } else if (buttonClickedType === "InProgress") {
-            setIsAddProgressClicked(true);
-        } else if (buttonClickedType === "Review") {
-            setIsAddReviewClicked(true);
-        } else if (buttonClickedType === "Done") {
-            setIsAddDoneClicked(true);
+
+        const handlers = {
+            Todo: setIsAddTodoClicked,
+            Progress: setIsAddProgressClicked,
+            Review: setIsAddReviewClicked,
+            Done: setIsAddDoneClicked,
+        };
+
+        if (handlers[buttonClickedType]) {
+            handlers[buttonClickedType](true);
+
+
         }
+
+
+
+
         setButtonClickedType('');
+
+
         close();
     }
 
@@ -33,7 +48,7 @@ function ComponentSwitcher({ close }) {
                 <h2>Move To</h2>
                 <form onSubmit={handleSubmit}>
                     <button type="submit" onClick={() => setButtonClickedType("Todo")}>Todo</button>
-                    <button type="submit" onClick={() => setButtonClickedType("InProgress")}>In Progress</button>
+                    <button type="submit" onClick={() => setButtonClickedType("Progress")}>In Progress</button>
                     <button type="submit" onClick={() => setButtonClickedType("Review")}>Review</button>
                     <button type="submit" onClick={() => setButtonClickedType("Done")}>Done</button>
                 </form>

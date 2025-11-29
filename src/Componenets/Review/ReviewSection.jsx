@@ -1,8 +1,8 @@
 
-import { useBoard } from '../Contexts/BoardContext.jsx'
+import { useBoard } from '../../Contexts/BoardContext.jsx'
 import TakeReviewInput from './TakeReviewInput.jsx'
 import Review from './Review.jsx'
-import { useIsAddComponentClicked } from '../Contexts/isAddComponentClickedContext.jsx'
+import { useIsAddComponentClicked } from '../../Contexts/isAddComponentClickedContext.jsx'
 
 
 function ReviewSection() {
@@ -31,7 +31,7 @@ function ReviewSection() {
                             <>
                                 {board.review.map((ReviewData) => (
                                     <div>
-                                        <Review key={ReviewData.id} ReviewData={ReviewData} />
+                                        <Review id={ReviewData.id} key={ReviewData.id} ReviewData={ReviewData} />
                                     </div>
                                 ))}
                             </>

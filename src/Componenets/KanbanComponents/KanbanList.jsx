@@ -1,5 +1,5 @@
 import KanbanListItem from './KanbanListItem.jsx'
-import { useBoard } from '../Contexts/BoardContext.jsx'
+import { useBoard } from '../../Contexts/BoardContext.jsx'
 
 
 function KanbanList() {
